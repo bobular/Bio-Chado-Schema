@@ -239,5 +239,39 @@ __PACKAGE__->has_many(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:H4F2iw3eRmVfBOU+Ncb3Ew
 
 
+=head1 MANY-TO-MANY RELATIONSHIPS
+
+=head2 stocks
+
+Type: many_to_many
+
+Returns a list of stocks
+
+Related object: Bio::Chado::Schema::Stock::Stock
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'stocks',
+     'nd_experiment_stocks' => 'stock',
+    );
+
+
+=head1 CONVENIENCE METHODS
+
+=head2 stocks_by_nd_experiment_stock_type
+
+Get stocks filtered by the nd_experiment_stock.type (cvterm)
+
+  my $derived_stocks = $experiment->stocks_by_nd_experiment_stock_type({ 'type.name' => 'derives_from'} );
+
+=cut
+
+sub stocks_by_nd_experiment_stock_type {
+  my ($self, $query) = @_;
+  return $self->search_related('nd_experiment_stocks', $query, { join => 'type' })->search_related('stock');
+}
+
 # You can replace this text with custom content, and it will be preserved on regeneration
 1;

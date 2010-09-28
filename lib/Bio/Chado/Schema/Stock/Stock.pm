@@ -315,6 +315,25 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07001 @ 2010-08-16 23:01:56
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:P/R2qsizqCc4FlZ6sk6+0g
 
+=head1 MANY-TO-MANY RELATIONSHIPS
+
+=head2 nd_experiments
+
+Type: many_to_many
+
+Returns a list of experiments
+
+Related object: Bio::Chado::Schema::NaturalDiversity::NdExperiment
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'nd_experiments',
+     'nd_experiment_stocks' => 'nd_experiment',
+    );
+
+=head1 CONVENIENCE METHODS
 
 =head2 create_stockprops
 
@@ -367,6 +386,7 @@ sub create_stockprops {
           prop_relation_name => 'stockprops',
         );
 }
+
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
