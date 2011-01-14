@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Util;
+
 =head1 NAME
 
 Bio::Chado::Schema::Util - utility functions shared by Bio::Chado::Schema objects
@@ -24,8 +26,8 @@ Bio::Chado::Schema::Util - utility functions shared by Bio::Chado::Schema object
 
 Helper functions used by several schema classes.
 
-Important Note: 
-This package is located in the Schema.pm file as secondary package 
+Important Note:
+This package is located in the Schema.pm file as secondary package
 and it haven't a file for itself. Nevertheless, the use will be the same.
 
 =head1 PACKAGE METHODS

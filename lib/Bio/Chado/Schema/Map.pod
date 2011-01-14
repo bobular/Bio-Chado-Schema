@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Map;
+
 =head1 NAME
 
 Bio::Chado::Schema::Map - Non-sequence maps: genetic, radiation hybrid, cytogenetic, etc
@@ -23,3 +25,5 @@ L<Bio::Chado::Schema::Map::Featurepos>
 L<Bio::Chado::Schema::Map::Featurerange>
 
 =cut
+
+1;

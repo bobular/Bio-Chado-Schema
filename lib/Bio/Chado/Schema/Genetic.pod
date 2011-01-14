@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Genetic;
+
 =head1 NAME
 
 Bio::Chado::Schema::Genetic - Genotypes and mutant alleles
@@ -31,3 +33,5 @@ L<Bio::Chado::Schema::Genetic::PhenotypeComparisonCvterm>
 L<Bio::Chado::Schema::Genetic::Phenstatement>
 
 =cut
+
+1;

@@ -15,7 +15,7 @@ Bio::Chado::Schema::Phylogeny::PhylonodeRelationship
 
 =head1 DESCRIPTION
 
-This is for 
+This is for
 relationships that are not strictly hierarchical; for example,
 horizontal gene transfer. Most phylogenetic trees are strictly
 hierarchical, nevertheless it is here for completeness.

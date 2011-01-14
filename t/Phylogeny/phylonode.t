@@ -6,12 +6,12 @@ use FindBin;
 use lib "$FindBin::RealBin/../lib";
 
 use Test::More;
-use BCSTest;
+use Bio::Chado::Schema;
 
 # shorthand for writing left and right indices
 sub lr($$) {  left_idx => shift, right_idx => shift }
 
-my $schema = BCSTest->init_schema();
+my $schema = Bio::Chado::Schema::Test->init_schema();
 my $phylotree_rs  = $schema->resultset('Phylogeny::Phylotree');
 my $phylonodes_rs = $schema->resultset('Phylogeny::Phylonode');
 $phylonodes_rs->delete;

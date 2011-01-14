@@ -338,7 +338,7 @@ __PACKAGE__->many_to_many
 =head2 create_stockprops
 
   Usage: $set->create_stockprops({ baz => 2, foo => 'bar' });
-  Desc : convenience method to create stock properties using stocks
+  Desc : convenience method to create stock properties using cvterms
           from the ontology with the given name
   Args : hashref of { propname => value, ...},
          options hashref as:
@@ -357,9 +357,9 @@ __PACKAGE__->many_to_many
             dbxref_accession_prefix => optional, default
                                        'autocreated:',
             definitions => optional hashref of:
-                { stock_name => definition,
+                { cvterm_name => definition,
                 }
-             to load into the stock table when autocreating stocks
+             to load into the cvterm table when autocreating cvterms
 
              rank => force numeric rank. Be careful not to pass ranks that already exist
                      for the property type. The function will die in such case.

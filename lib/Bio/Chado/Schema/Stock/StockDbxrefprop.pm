@@ -1,4 +1,4 @@
-package Bio::Chado::Schema::Project::Projectprop;
+package Bio::Chado::Schema::Stock::StockDbxrefprop;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,22 +11,30 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Bio::Chado::Schema::Project::Projectprop
+Bio::Chado::Schema::Stock::StockDbxrefprop
+
+=head1 DESCRIPTION
+
+A stock_dbxref can have any number of
+slot-value property tags attached to it. This is useful for storing properties related to dbxref annotations of stocks, such as evidence codes, and references, and metadata, such as create/modify dates. This is an alternative to
+hardcoding a list of columns in the relational schema, and is
+completely extensible. There is a unique constraint, stock_dbxrefprop_c1, for
+the combination of stock_dbxref_id, rank, and type_id. Multivalued property-value pairs must be differentiated by rank.
 
 =cut
 
-__PACKAGE__->table("projectprop");
+__PACKAGE__->table("stock_dbxrefprop");
 
 =head1 ACCESSORS
 
-=head2 projectprop_id
+=head2 stock_dbxrefprop_id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'projectprop_projectprop_id_seq'
+  sequence: 'stock_dbxrefprop_stock_dbxrefprop_id_seq'
 
-=head2 project_id
+=head2 stock_dbxref_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -52,14 +60,14 @@ __PACKAGE__->table("projectprop");
 =cut
 
 __PACKAGE__->add_columns(
-  "projectprop_id",
+  "stock_dbxrefprop_id",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "projectprop_projectprop_id_seq",
+    sequence          => "stock_dbxrefprop_stock_dbxrefprop_id_seq",
   },
-  "project_id",
+  "stock_dbxref_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "type_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -68,23 +76,23 @@ __PACKAGE__->add_columns(
   "rank",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
 );
-__PACKAGE__->set_primary_key("projectprop_id");
-__PACKAGE__->add_unique_constraint("projectprop_c1", ["project_id", "type_id", "rank"]);
+__PACKAGE__->set_primary_key("stock_dbxrefprop_id");
+__PACKAGE__->add_unique_constraint("stock_dbxrefprop_c1", ["stock_dbxref_id", "type_id", "rank"]);
 
 =head1 RELATIONS
 
-=head2 project
+=head2 stock_dbxref
 
 Type: belongs_to
 
-Related object: L<Bio::Chado::Schema::Project::Project>
+Related object: L<Bio::Chado::Schema::Stock::StockDbxref>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "project",
-  "Bio::Chado::Schema::Project::Project",
-  { project_id => "project_id" },
+  "stock_dbxref",
+  "Bio::Chado::Schema::Stock::StockDbxref",
+  { stock_dbxref_id => "stock_dbxref_id" },
   {
     cascade_copy   => 0,
     cascade_delete => 0,
@@ -116,8 +124,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-18 16:56:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Z4pIZEJdOqthg42k9Bwenw
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-20 20:21:16
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zyLUktYkU3gAmS8ALhvI7w
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

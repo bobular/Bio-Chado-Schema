@@ -114,10 +114,76 @@ __PACKAGE__->belongs_to(
   },
 );
 
+=head2 stock_dbxrefprops
 
-# Created by DBIx::Class::Schema::Loader v0.06001 @ 2010-04-16 14:33:36
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UcMQUHTJ0NIeXTOM3xtIaA
+Type: has_many
+
+Related object: L<Bio::Chado::Schema::Stock::StockDbxrefprop>
+
+=cut
+
+__PACKAGE__->has_many(
+  "stock_dbxrefprops",
+  "Bio::Chado::Schema::Stock::StockDbxrefprop",
+  { "foreign.stock_dbxref_id" => "self.stock_dbxref_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-20 20:21:16
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:inK7WMGbO8MNI+M2xYrRfw
+
+
+=head2 create_stock_dbxrefprops
+
+  Usage: $set->create_stock_dbxrefprops({ baz => 2, foo => 'bar' });
+  Desc : convenience method to create stock_dbxref properties using cvterms
+          from the ontology with the given name
+  Args : hashref of { propname => value, ...},
+         options hashref as:
+          {
+            autocreate => 0,
+               (optional) boolean, if passed, automatically create cv,
+               cvterm, and dbxref rows if one cannot be found for the
+               given stock_dbxrefprop name.  Default false.
+
+            cv_name => cv.name to use for the given stock_dbxrefprops.
+                       Defaults to 'stock_dbxref_property',
+
+            db_name => db.name to use for autocreated dbxrefs,
+                       default 'null',
+
+            dbxref_accession_prefix => optional, default
+                                       'autocreated:',
+            definitions => optional hashref of:
+                { cvterm_name => definition,
+                }
+             to load into the cvterm table when autocreating cvterms
+
+             rank => force numeric rank. Be careful not to pass ranks that already exist
+                     for the property type. The function will die in such case.
+
+             allow_duplicate_values => default false.
+                If true, allow duplicate instances of the same stock_dbxref
+                and value in the properties of the stock_dbxref.  Duplicate
+                values will have different ranks.
+          }
+  Ret  : hashref of { propname => new stock_dbxrefprop object }
+
+=cut
+
+sub create_stock_dbxrefprops {
+    my ($self, $props, $opts) = @_;
+
+    # process opts
+    $opts->{cv_name} = 'stock_dbxref_property'
+        unless defined $opts->{cv_name};
+    return Bio::Chado::Schema::Util->create_properties
+        ( properties => $props,
+          options    => $opts,
+          row        => $self,
+          prop_relation_name => 'stock_dbxrefprops',
+        );
+}
+
 1;

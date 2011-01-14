@@ -59,7 +59,7 @@ __PACKAGE__->table("gff3view");
 
 =head2 strand
 
-  data_type: 'smallint'
+  data_type: 'text'
   is_nullable: 1
 
 =head2 phase
@@ -101,7 +101,7 @@ __PACKAGE__->add_columns(
   "score",
   { data_type => "double precision", is_nullable => 1 },
   "strand",
-  { data_type => "smallint", is_nullable => 1 },
+  { data_type => "text", is_nullable => 1 },
   "phase",
   { data_type => "integer", is_nullable => 1 },
   "seqlen",
@@ -113,8 +113,8 @@ __PACKAGE__->add_columns(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07001 @ 2010-08-16 23:01:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:dJ6GtfxM1/KYSZpk4mFkow
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-18 16:56:35
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+oeARx+zxVYZng5Uiveeyw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::NaturalDiversity;
+
 =head1 NAME
 
 Bio::Chado::Schema::NaturalDiversity - Natural diversity module for dealing with populations, samples, genotypes,
@@ -56,3 +58,5 @@ L<Bio::Chado::Schema::NaturalDiversity::NdReagentRelationship>
 L<Bio::Chado::Schema::NaturalDiversity::NdReagentprop>
 
 =cut
+
+1;

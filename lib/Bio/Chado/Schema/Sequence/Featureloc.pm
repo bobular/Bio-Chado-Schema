@@ -275,5 +275,21 @@ __PACKAGE__->has_many(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VED7G1XykKNri3GIOYY5NQ
 
 
+=head2 length
+
+Read-only.  Number of bases spanned by this featureloc.
+
+Equal to C<fmax - fmin> (since coords are interbase).
+
+=cut
+
+sub length {
+    my $self = shift;
+    no warnings 'uninitialized';
+    return undef unless defined($self->fmax) && defined($self->fmin);
+    return $self->fmax - $self->fmin;
+}
+
+
 # You can replace this text with custom content, and it will be preserved on regeneration
 1;

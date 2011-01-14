@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Sequence;
+
 =head1 NAME
 
 Bio::Chado::Schema::Sequence - Sequence and sequence features, their localization and properties
@@ -59,3 +61,5 @@ L<Bio::Chado::Schema::Sequence::Synonym>
 L<Bio::Chado::Schema::Sequence::TypeFeatureCount>
 
 =cut
+
+1;

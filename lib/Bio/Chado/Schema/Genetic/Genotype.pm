@@ -35,7 +35,7 @@ __PACKAGE__->table("genotype");
   data_type: 'text'
   is_nullable: 1
 
-Optional alternative name for a genotype, 
+Optional alternative name for a genotype,
 for display purposes.
 
 =head2 uniquename
@@ -43,7 +43,7 @@ for display purposes.
   data_type: 'text'
   is_nullable: 0
 
-The unique name for a genotype; 
+The unique name for a genotype;
 typically derived from the features making up the genotype.
 
 =head2 description

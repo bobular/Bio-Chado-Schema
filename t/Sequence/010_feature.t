@@ -5,11 +5,11 @@ use warnings;
 use FindBin;
 use lib "$FindBin::RealBin/../lib";
 
-use Test::More tests => 23;
+use Test::More tests => 29;
 use Test::Exception;
-use BCSTest;
+use Bio::Chado::Schema;
 
-my $schema = BCSTest->init_schema();
+my $schema = Bio::Chado::Schema::Test->init_schema();
 
 my $sf = $schema->resultset('Sequence::Feature');
 isa_ok( $sf, 'DBIx::Class::ResultSet' );
@@ -23,21 +23,22 @@ $schema->txn_do(sub{
 });
 
 $schema->txn_do(sub{
-    my $dbx = $schema->resultset('General::Db')
-                ->find_or_create({ name => 'test db' })
-                ->find_or_create_related('dbxrefs',
-                            { accession => 'made_up',
-                            },
-                            );
-
     # insert a feature with some sequence
-    my $cvterm = $schema->resultset('Cv::Cv')
-                ->find_or_create({ name => 'testing cv' })
-                ->find_or_create_related('cvterms',
-                                { name => 'tester',
-                                dbxref => $dbx,
-                                },
-                            );
+    my $cvterm = $schema->resultset('Cv::Cvterm')
+                 ->create_with({
+                     name => 'tester',
+                     cv   => 'testing cv',
+                     db   => 'fake db',
+                     dbxref => 'fake accession',
+                 });
+    my $large_seq_type =
+         $schema->resultset('Cv::Cvterm')
+                 ->create_with({
+                     name => 'large_residues',
+                     cv   => 'testing cv',
+                     db   => 'fake db',
+                     dbxref => 'fake large_residues accession',
+                 });
 
     my $test_seq = 'ACTAGCATCATGCCGCTAGCTAATATGCTG';
     my $grandpa = $schema->resultset('Sequence::Feature')
@@ -49,15 +50,30 @@ $schema->txn_do(sub{
                     type       => $cvterm,
                     organism_id=> 4,
             });
+
+    is( $grandpa->subseq( 3, 5 ), 'TAG', 'subseq on regular residues works' );
+    is( $grandpa->trunc( 3, 5 )->seq, 'TAG', 'trunc on regular residues works' );
+
     my $parent = $schema->resultset('Sequence::Feature')
             ->find_or_create({
-                    residues   => $test_seq,
                     seqlen     => length( $test_seq ),
                     name       => 'BCS_stuff_parent',
                     uniquename => 'BCS_foo',
                     type       => $cvterm,
                     organism_id=> 4,
             });
+
+    $parent->find_or_create_related(
+        'featureprops',
+        { type  => $large_seq_type,
+          value => $test_seq,
+        },
+       );
+
+    is( $parent->subseq( 3, 5 ), 'TAG', 'subseq on large_residues prop works' );
+    is( $parent->trunc( 3, 5 )->seq, 'TAG', 'subseq on large_residues prop works' );
+    is( $parent->trunc( 3, 5 )->id, $parent->name, 'subseq on large_residues has proper name' );
+
     my $child = $schema->resultset('Sequence::Feature')
             ->find_or_create({
                     residues   => $test_seq,
@@ -149,6 +165,16 @@ $schema->txn_do(sub{
 
     is_deeply( [ map { $_->name } @children ], [ 'BCS_stepchild', 'BCS_stuff_child' ], 'child feature_id is correct' );
     is_deeply( [ map { $_->name } @parents ], [ 'BCS_stuff_parent' ], 'parent feature_id is correct' );
+
+    #test some featureloc stuff
+    my $featureloc = $schema->resultset('Sequence::Featureloc')
+           ->create({ srcfeature => $grandpa,
+                      feature    => $parent,
+                      fmin       => 20,
+                      fmax       => 28,
+                      strand     => 1,
+                  });
+    is( $featureloc->length, 8, 'got right featureloc length' );
 
     $schema->txn_rollback;
 });

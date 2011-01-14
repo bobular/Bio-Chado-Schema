@@ -52,3 +52,6 @@
 
 # Avoid archives of this distribution
 \bBio-Chado-Schema-[\d\.\_]+
+
+# avoid including the test db in t/var
+\bt/var/*

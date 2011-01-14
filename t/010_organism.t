@@ -6,9 +6,9 @@ use FindBin;
 use lib "$FindBin::RealBin/lib";
 use Test::More;
 use Test::Exception;
-use BCSTest;
+use Bio::Chado::Schema;
 
-my $schema = BCSTest->init_schema();
+my $schema = Bio::Chado::Schema::Test->init_schema();
 
 isa_ok( $schema, 'DBIx::Class::Schema' );
 

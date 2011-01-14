@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Expression;
+
 =head1 NAME
 
 Bio::Chado::Schema::Expression - transcript or protein expression data
@@ -33,3 +35,5 @@ L<Bio::Chado::Schema::Expression::FeatureExpression>
 L<Bio::Chado::Schema::Expression::FeatureExpressionprop>
 
 =cut
+
+1;

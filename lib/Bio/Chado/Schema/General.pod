@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::General;
+
 =head1 NAME
 
 Bio::Chado::Schema::General - General purpose tables, including dbxrefs
@@ -23,3 +25,5 @@ L<Bio::Chado::Schema::General::Dbxref>
 L<Bio::Chado::Schema::General::Tableinfo>
 
 =cut
+
+1;

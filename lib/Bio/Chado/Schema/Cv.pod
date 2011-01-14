@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Cv;
+
 =head1 NAME
 
 Bio::Chado::Schema::Cv - Controlled vocabularies and ontologies
@@ -49,3 +51,5 @@ L<Bio::Chado::Schema::Cv::Dbxrefprop>
 L<Bio::Chado::Schema::Cv::StatsPathsToRoot>
 
 =cut
+
+1;

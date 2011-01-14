@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Library;
+
 =head1 NAME
 
 Bio::Chado::Schema::Library - For describing molecular libraries
@@ -31,3 +33,5 @@ L<Bio::Chado::Schema::Library::Libraryprop>
 L<Bio::Chado::Schema::Library::LibrarypropPub>
 
 =cut
+
+1;

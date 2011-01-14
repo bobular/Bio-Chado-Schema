@@ -1,3 +1,42 @@
+{{$NEXT}}
+
+0.07300   2010-11-28 17:19:08 PST8PDT
+
+ * Add convenient featureloc length() method.
+ * Add better support for large sequences: a subseq() method to
+   Feature class with support for checking a 'large_residues'
+   featureprop for sequence, and doing substring calls on that.
+
+0.07100   2010-11-16 12:28:17 PST8PDT
+
+ * Fix bug with Cvterm add_secondary_dbxref, only caught under
+   DBIx::Class >= 0.08124
+ * add convenience methods for creating stock_dbxrefprops,
+   nd_experimentprops, projectprops, and geolocationprops
+ * add methods for working with parent and child terms of cvterms
+ * Convert t/lib/BCSTest.pm to Bio::Chado::Schema::Test so other
+   CPAN modules can have test suites that use an
+   automagically-created SQLite db
+
+0.06400   2010-10-20 20:54:37 PST8PDT
+
+ * added naama's stock_dbxrefprop from upstream chado
+
+0.06302   2010-10-20 09:58:19 PST8PDT
+
+ * corrected homepage url in CPAN upload
+
+0.06301   2010-10-19 17:49:41 PST8PDT
+
+ * corrected missing DBIx::Class::Tree::NestedSet dep
+
+0.06300   2010-10-18 17:38:29 PST8PDT
+
+ * converted build system to Dist::Zilla
+ * applied nmenda's type_id corrections from chado trunk
+ * fix permission denied test failure caused by shipping a
+   t/var/BCS.db file by accident
+
 0.06200
 
  * removed erroneous duplicate General/Project.pm module

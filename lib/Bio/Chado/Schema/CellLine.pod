@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::CellLine;
+
 =head1 NAME
 
 Bio::Chado::Schema::CellLine - For describing cell lines
@@ -37,3 +39,5 @@ L<Bio::Chado::Schema::CellLine::CellLineprop>
 L<Bio::Chado::Schema::CellLine::CellLinepropPub>
 
 =cut
+
+1;

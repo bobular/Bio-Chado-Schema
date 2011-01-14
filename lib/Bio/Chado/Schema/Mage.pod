@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Mage;
+
 =head1 NAME
 
 Bio::Chado::Schema::Mage - Alternative expression module, based on MAGE model
@@ -87,3 +89,5 @@ L<Bio::Chado::Schema::Mage::StudypropFeature>
 L<Bio::Chado::Schema::Mage::Treatment>
 
 =cut
+
+1;

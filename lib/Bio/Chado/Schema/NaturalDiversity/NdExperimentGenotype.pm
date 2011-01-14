@@ -59,8 +59,8 @@ __PACKAGE__->add_columns(
 );
 __PACKAGE__->set_primary_key("nd_experiment_genotype_id");
 __PACKAGE__->add_unique_constraint(
-  "nd_experiment_genotype_nd_experiment_id_key",
-  ["nd_experiment_id"],
+  "nd_experiment_genotype_c1",
+  ["nd_experiment_id", "genotype_id"],
 );
 
 =head1 RELATIONS
@@ -108,8 +108,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07001 @ 2010-08-16 23:01:56
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:swZLBvuzBLXmkJJ1GPxxgg
+# Created by DBIx::Class::Schema::Loader v0.07002 @ 2010-10-28 03:52:24
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:r9vtruL+MI5xpfxqKN94Zw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

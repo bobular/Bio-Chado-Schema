@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Composite;
+
 =head1 NAME
 
 Bio::Chado::Schema::Composite - A collection of bridge codes that have multiple dependancies
@@ -52,3 +54,5 @@ L<Bio::Chado::Schema::Composite::Gff3view>
 L<Bio::Chado::Schema::Composite::Gffatts>
 
 =cut
+
+1;

@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Phylogeny;
+
 =head1 NAME
 
 Bio::Chado::Schema::Phylogeny - For representing phylogenetic trees; the trees represent the
@@ -33,3 +35,5 @@ L<Bio::Chado::Schema::Phylogeny::Phylotree>
 L<Bio::Chado::Schema::Phylogeny::PhylotreePub>
 
 =cut
+
+1;

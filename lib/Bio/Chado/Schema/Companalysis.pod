@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Companalysis;
+
 =head1 NAME
 
 Bio::Chado::Schema::Companalysis - Augments sequence module with descriptions of computational
@@ -24,3 +26,5 @@ L<Bio::Chado::Schema::Companalysis::Analysisfeatureprop>
 L<Bio::Chado::Schema::Companalysis::Analysisprop>
 
 =cut
+
+1;

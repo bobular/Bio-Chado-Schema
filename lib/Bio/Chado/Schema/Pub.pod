@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Pub;
+
 =head1 NAME
 
 Bio::Chado::Schema::Pub - Bibliographic data on publications
@@ -25,3 +27,5 @@ L<Bio::Chado::Schema::Pub::Pubauthor>
 L<Bio::Chado::Schema::Pub::Pubprop>
 
 =cut
+
+1;

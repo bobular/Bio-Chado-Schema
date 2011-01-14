@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Contact;
+
 =head1 NAME
 
 Bio::Chado::Schema::Contact - model persons, institutes, groups, organizations, etc
@@ -19,3 +21,5 @@ L<Bio::Chado::Schema::Contact::Contact>
 L<Bio::Chado::Schema::Contact::ContactRelationship>
 
 =cut
+
+1;

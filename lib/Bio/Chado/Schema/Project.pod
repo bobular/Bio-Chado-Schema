@@ -1,3 +1,5 @@
+package Bio::Chado::Schema::Project;
+
 =head1 NAME
 
 Bio::Chado::Schema::Project - The project table has been moved from general to its own module and has been
@@ -26,3 +28,5 @@ L<Bio::Chado::Schema::Project::ProjectRelationship>
 L<Bio::Chado::Schema::Project::Projectprop>
 
 =cut
+
+1;
