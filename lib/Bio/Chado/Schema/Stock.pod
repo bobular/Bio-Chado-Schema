@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Stock;
+package Bio::Chado::Schema::Result::Stock;
 
 =head1 NAME
 
-Bio::Chado::Schema::Stock - For tracking stock collections
+Bio::Chado::Schema::Result::Stock - For tracking stock collections
 
 =head1 CHADO MODULE
 
@@ -16,33 +16,35 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Stock::Stock>
+L<Bio::Chado::Schema::Result::Stock::Stock>
 
-L<Bio::Chado::Schema::Stock::StockCvterm>
+L<Bio::Chado::Schema::Result::Stock::StockCvterm>
 
-L<Bio::Chado::Schema::Stock::StockDbxref>
+L<Bio::Chado::Schema::Result::Stock::StockCvtermprop>
 
-L<Bio::Chado::Schema::Stock::StockDbxrefprop>
+L<Bio::Chado::Schema::Result::Stock::StockDbxref>
 
-L<Bio::Chado::Schema::Stock::StockGenotype>
+L<Bio::Chado::Schema::Result::Stock::StockDbxrefprop>
 
-L<Bio::Chado::Schema::Stock::StockPub>
+L<Bio::Chado::Schema::Result::Stock::StockGenotype>
 
-L<Bio::Chado::Schema::Stock::StockRelationship>
+L<Bio::Chado::Schema::Result::Stock::StockPub>
 
-L<Bio::Chado::Schema::Stock::StockRelationshipCvterm>
+L<Bio::Chado::Schema::Result::Stock::StockRelationship>
 
-L<Bio::Chado::Schema::Stock::StockRelationshipPub>
+L<Bio::Chado::Schema::Result::Stock::StockRelationshipCvterm>
 
-L<Bio::Chado::Schema::Stock::Stockcollection>
+L<Bio::Chado::Schema::Result::Stock::StockRelationshipPub>
 
-L<Bio::Chado::Schema::Stock::StockcollectionStock>
+L<Bio::Chado::Schema::Result::Stock::Stockcollection>
 
-L<Bio::Chado::Schema::Stock::Stockcollectionprop>
+L<Bio::Chado::Schema::Result::Stock::StockcollectionStock>
 
-L<Bio::Chado::Schema::Stock::Stockprop>
+L<Bio::Chado::Schema::Result::Stock::Stockcollectionprop>
 
-L<Bio::Chado::Schema::Stock::StockpropPub>
+L<Bio::Chado::Schema::Result::Stock::Stockprop>
+
+L<Bio::Chado::Schema::Result::Stock::StockpropPub>
 
 =cut
 

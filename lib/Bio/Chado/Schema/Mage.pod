@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Mage;
+package Bio::Chado::Schema::Result::Mage;
 
 =head1 NAME
 
-Bio::Chado::Schema::Mage - Alternative expression module, based on MAGE model
+Bio::Chado::Schema::Result::Mage - Alternative expression module, based on MAGE model
 
 =head1 CHADO MODULE
 
@@ -16,77 +16,77 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Mage::Acquisition>
+L<Bio::Chado::Schema::Result::Mage::Acquisition>
 
-L<Bio::Chado::Schema::Mage::AcquisitionRelationship>
+L<Bio::Chado::Schema::Result::Mage::AcquisitionRelationship>
 
-L<Bio::Chado::Schema::Mage::Acquisitionprop>
+L<Bio::Chado::Schema::Result::Mage::Acquisitionprop>
 
-L<Bio::Chado::Schema::Mage::Arraydesign>
+L<Bio::Chado::Schema::Result::Mage::Arraydesign>
 
-L<Bio::Chado::Schema::Mage::Arraydesignprop>
+L<Bio::Chado::Schema::Result::Mage::Arraydesignprop>
 
-L<Bio::Chado::Schema::Mage::Assay>
+L<Bio::Chado::Schema::Result::Mage::Assay>
 
-L<Bio::Chado::Schema::Mage::AssayBiomaterial>
+L<Bio::Chado::Schema::Result::Mage::AssayBiomaterial>
 
-L<Bio::Chado::Schema::Mage::AssayProject>
+L<Bio::Chado::Schema::Result::Mage::AssayProject>
 
-L<Bio::Chado::Schema::Mage::Assayprop>
+L<Bio::Chado::Schema::Result::Mage::Assayprop>
 
-L<Bio::Chado::Schema::Mage::Biomaterial>
+L<Bio::Chado::Schema::Result::Mage::Biomaterial>
 
-L<Bio::Chado::Schema::Mage::BiomaterialDbxref>
+L<Bio::Chado::Schema::Result::Mage::BiomaterialDbxref>
 
-L<Bio::Chado::Schema::Mage::BiomaterialRelationship>
+L<Bio::Chado::Schema::Result::Mage::BiomaterialRelationship>
 
-L<Bio::Chado::Schema::Mage::BiomaterialTreatment>
+L<Bio::Chado::Schema::Result::Mage::BiomaterialTreatment>
 
-L<Bio::Chado::Schema::Mage::Biomaterialprop>
+L<Bio::Chado::Schema::Result::Mage::Biomaterialprop>
 
-L<Bio::Chado::Schema::Mage::Channel>
+L<Bio::Chado::Schema::Result::Mage::Channel>
 
-L<Bio::Chado::Schema::Mage::Control>
+L<Bio::Chado::Schema::Result::Mage::Control>
 
-L<Bio::Chado::Schema::Mage::Element>
+L<Bio::Chado::Schema::Result::Mage::Element>
 
-L<Bio::Chado::Schema::Mage::ElementRelationship>
+L<Bio::Chado::Schema::Result::Mage::ElementRelationship>
 
-L<Bio::Chado::Schema::Mage::Elementresult>
+L<Bio::Chado::Schema::Result::Mage::Elementresult>
 
-L<Bio::Chado::Schema::Mage::ElementresultRelationship>
+L<Bio::Chado::Schema::Result::Mage::ElementresultRelationship>
 
-L<Bio::Chado::Schema::Mage::Magedocumentation>
+L<Bio::Chado::Schema::Result::Mage::Magedocumentation>
 
-L<Bio::Chado::Schema::Mage::Mageml>
+L<Bio::Chado::Schema::Result::Mage::Mageml>
 
-L<Bio::Chado::Schema::Mage::Protocol>
+L<Bio::Chado::Schema::Result::Mage::Protocol>
 
-L<Bio::Chado::Schema::Mage::Protocolparam>
+L<Bio::Chado::Schema::Result::Mage::Protocolparam>
 
-L<Bio::Chado::Schema::Mage::Quantification>
+L<Bio::Chado::Schema::Result::Mage::Quantification>
 
-L<Bio::Chado::Schema::Mage::QuantificationRelationship>
+L<Bio::Chado::Schema::Result::Mage::QuantificationRelationship>
 
-L<Bio::Chado::Schema::Mage::Quantificationprop>
+L<Bio::Chado::Schema::Result::Mage::Quantificationprop>
 
-L<Bio::Chado::Schema::Mage::Study>
+L<Bio::Chado::Schema::Result::Mage::Study>
 
-L<Bio::Chado::Schema::Mage::StudyAssay>
+L<Bio::Chado::Schema::Result::Mage::StudyAssay>
 
-L<Bio::Chado::Schema::Mage::Studydesign>
+L<Bio::Chado::Schema::Result::Mage::Studydesign>
 
-L<Bio::Chado::Schema::Mage::Studydesignprop>
+L<Bio::Chado::Schema::Result::Mage::Studydesignprop>
 
-L<Bio::Chado::Schema::Mage::Studyfactor>
+L<Bio::Chado::Schema::Result::Mage::Studyfactor>
 
-L<Bio::Chado::Schema::Mage::Studyfactorvalue>
+L<Bio::Chado::Schema::Result::Mage::Studyfactorvalue>
 
-L<Bio::Chado::Schema::Mage::Studyprop>
+L<Bio::Chado::Schema::Result::Mage::Studyprop>
 
-L<Bio::Chado::Schema::Mage::StudypropFeature>
+L<Bio::Chado::Schema::Result::Mage::StudypropFeature>
 
-L<Bio::Chado::Schema::Mage::Treatment>
+L<Bio::Chado::Schema::Result::Mage::Treatment>
 
 =cut
 

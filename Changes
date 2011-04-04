@@ -1,5 +1,23 @@
 {{$NEXT}}
 
+0.08100   2011-03-21 16:01:00 America/Los_Angeles
+
+ * add support for literal sql in property values set using
+   create_*props helper functions
+ * add 'features' many-to-many relation to the Synonym result class.
+ * add 'synonyms' many-to-many relation to the Feature result class.
+ * add new class for stock_cvtermprop table, and new is_not and rank
+   columns for stock_cvterm
+
+0.08002   2011-02-22 11:17:13 America/Los_Angeles
+
+ * Added support for new cvprop table.
+ * Added plugin_add_relationship class method to Bio::Chado::Schema
+   main class, which makes it possible to do BCS plugins: sets of
+   classes in the Bio::Chado::Schema namespace that are loaded as part
+   of BCS.  plugin_add_relationship lets plugins inject relationships
+   into the core BCS classes.
+
 0.07300   2010-11-28 17:19:08 PST8PDT
 
  * Add convenient featureloc length() method.

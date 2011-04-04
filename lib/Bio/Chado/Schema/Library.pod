@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Library;
+package Bio::Chado::Schema::Result::Library;
 
 =head1 NAME
 
-Bio::Chado::Schema::Library - For describing molecular libraries
+Bio::Chado::Schema::Result::Library - For describing molecular libraries
 
 =head1 CHADO MODULE
 
@@ -16,21 +16,21 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Library::Library>
+L<Bio::Chado::Schema::Result::Library::Library>
 
-L<Bio::Chado::Schema::Library::LibraryCvterm>
+L<Bio::Chado::Schema::Result::Library::LibraryCvterm>
 
-L<Bio::Chado::Schema::Library::LibraryDbxref>
+L<Bio::Chado::Schema::Result::Library::LibraryDbxref>
 
-L<Bio::Chado::Schema::Library::LibraryFeature>
+L<Bio::Chado::Schema::Result::Library::LibraryFeature>
 
-L<Bio::Chado::Schema::Library::LibraryPub>
+L<Bio::Chado::Schema::Result::Library::LibraryPub>
 
-L<Bio::Chado::Schema::Library::LibrarySynonym>
+L<Bio::Chado::Schema::Result::Library::LibrarySynonym>
 
-L<Bio::Chado::Schema::Library::Libraryprop>
+L<Bio::Chado::Schema::Result::Library::Libraryprop>
 
-L<Bio::Chado::Schema::Library::LibrarypropPub>
+L<Bio::Chado::Schema::Result::Library::LibrarypropPub>
 
 =cut
 

@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::CellLine;
+package Bio::Chado::Schema::Result::CellLine;
 
 =head1 NAME
 
-Bio::Chado::Schema::CellLine - For describing cell lines
+Bio::Chado::Schema::Result::CellLine - For describing cell lines
 
 =head1 CHADO MODULE
 
@@ -16,27 +16,27 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::CellLine::CellLine>
+L<Bio::Chado::Schema::Result::CellLine::CellLine>
 
-L<Bio::Chado::Schema::CellLine::CellLineCvterm>
+L<Bio::Chado::Schema::Result::CellLine::CellLineCvterm>
 
-L<Bio::Chado::Schema::CellLine::CellLineCvtermprop>
+L<Bio::Chado::Schema::Result::CellLine::CellLineCvtermprop>
 
-L<Bio::Chado::Schema::CellLine::CellLineDbxref>
+L<Bio::Chado::Schema::Result::CellLine::CellLineDbxref>
 
-L<Bio::Chado::Schema::CellLine::CellLineFeature>
+L<Bio::Chado::Schema::Result::CellLine::CellLineFeature>
 
-L<Bio::Chado::Schema::CellLine::CellLineLibrary>
+L<Bio::Chado::Schema::Result::CellLine::CellLineLibrary>
 
-L<Bio::Chado::Schema::CellLine::CellLinePub>
+L<Bio::Chado::Schema::Result::CellLine::CellLinePub>
 
-L<Bio::Chado::Schema::CellLine::CellLineRelationship>
+L<Bio::Chado::Schema::Result::CellLine::CellLineRelationship>
 
-L<Bio::Chado::Schema::CellLine::CellLineSynonym>
+L<Bio::Chado::Schema::Result::CellLine::CellLineSynonym>
 
-L<Bio::Chado::Schema::CellLine::CellLineprop>
+L<Bio::Chado::Schema::Result::CellLine::CellLineprop>
 
-L<Bio::Chado::Schema::CellLine::CellLinepropPub>
+L<Bio::Chado::Schema::Result::CellLine::CellLinepropPub>
 
 =cut
 

@@ -6,7 +6,7 @@ use FindBin;
 use lib "$FindBin::RealBin/../lib";
 
 use Test::More;
-use Bio::Chado::Schema;
+use Bio::Chado::Schema::Test;
 
 # shorthand for writing left and right indices
 sub lr($$) {  left_idx => shift, right_idx => shift }

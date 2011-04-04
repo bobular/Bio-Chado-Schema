@@ -1,15 +1,15 @@
 ----
-presentation_topic: dbic_chado
+presentation_topic: bio-chado-schema
 presentation_title: Bio::Chado::Schema
 presentation_subtitle: a standard Perl ORM layer for Chado
-presentation_place: San Diego, CA
-presentation_date: January 13-14, 2010
+presentation_place: NESCent, Durham, NC
+presentation_date: March 5-7, 2011
 ----
 = What is DBIx::Class?
 
-* Object-relational mapping framework for Perl
+* Object-relational mapping framework for Perl 5
 * is now the de-facto standard
-* nice features
+* very powerful query builder
 
 ----
 = What is DBIx::Class?
@@ -30,9 +30,9 @@ see http://search.cpan.org/dist/DBIx-Class/lib/DBIx/Class/Manual.pod
 This isn't really middleware, it's a code library.
 
 ----
-= And therefore, Bio::Chado::Schema
+= And therefore, Bio::Chado::Schema 
 
-== Approx. 180 Perl classes
+== As of 0.08: 205 Perl 5 classes
 * every table and view, every module
 * Chado docs mirrored in the POD
 
@@ -46,7 +46,6 @@ http://search.cpan.org/dist/Bio-Chado-Schema
 == Chado's design makes for:
 * complex queries
 * steep learning curve
-* hard to get good performance
 
 ----
 = Chado needs encapsulation
@@ -65,43 +64,40 @@ http://search.cpan.org/dist/Bio-Chado-Schema
 * can help with database administration
 
 ----
-= Chado needs encapsulation
-
-== performance
-* encapsulation => performance optimizations where needed
-* first step for more data management
-** creative indexing
-** materialized views (with their own classes)
-
-----
 = BCS Usage
 
 * open the schema.  ( actual DB connection is deferred )
 +  my $chado = Bio::Chado::Schema->connect( 'dbi:Pg:...', $user, $pass );
 
 +* get a ResultSet object representing a set of Rows
-+  my $all_features = $chado->resultset('Sequence::Feature');
-
-+* a subset of those (another ResultSet)
-+  my $other_feature = $all_features->search({ name => 'something' });
++  $chado->resultset('Sequence::Feature');
++        ->search({ name => 'something' });
++        ->search_related('organism')
 
 +* get an actual data object
-+  my $some_feature = $all_features->find( 232432 );
-  $other_feature->first;
-  # or search in list context returns all resulting rows (careful!)
-  my @other_features = $all_features->search({ name => 'something' });
++  $chado->resultset('Sequence::Feature')
+        ->find( 232432 );
 
-+* get its type cvterm
-+  say $some_feature->type->name;
+----
+= BCS Usage
+
++* iterate over the actual data in a set
++  my $stuff = $chado->blahblahblah;
+  while( my $row = $stuff->next ) {
+    # do something
+  }
+
++* traverse relationships
++ say $some_feature->type->name;
 
 ----
 = BCS Usage: Joined Select
 
   # get features via the potato organism, also joining in the cvterms table
-  my $potato_bacs =
++  my $potato_bacs =
        $chado->resultset('Organism::Organism')
-             ->search({ species => 'Solanum tuberosum' })
-             ->search_related( 'features',
++             ->search({ species => 'Solanum tuberosum' })
++             ->search_related( 'features',
                                { 'type.name' => 'BAC_clone'},
                                { 'join' => 'type' },
                              );
@@ -155,9 +151,12 @@ makes the SQL:
 = BCS Usage: Transactions
 
   $chado->txn_do(sub {
+
       $chado->resultset('Cv::Cv')
             ->find_or_create({ name => 'My Fake Ontology' })
             ->create_related( 'cvterm', { name => 'MyFakeTerm' } );
+
+      $chado->do_all_kinds_of_other_stuff;
   });
 
 ----
@@ -212,7 +211,7 @@ makes the SQL:
   );
 
 ----
-= "Duct tape" BCS to your own schema
+= "Duct tape" your own schema onto BCS
 
 * make an accessor 'other_things' that ties your own DBIC class to BCS
 
@@ -231,35 +230,28 @@ makes the SQL:
 ----
 = Making a composite schema
 
-  my $merged_schema_class =
-        Bio::Chado::Schema->merge( 'My::DBIC::Layer' );
-
-  $merged_schema_class->connect( ... );
-
-  $chado->resultset('Sequence::Feature')->other_things;
-  $chado->resultset('OtherThing')->find(...)->feature;
-
-Note: merge() is new in BCS 0.6, releasing soon.
-	
-----
-= Further Work
-
-== Still need to add in some DBIx::Class relationships:
-* more many_to_many relationships (must be added manually)
-
-== More useful things are needed:
-* automate more common querying and loading patterns
-* compatibility with BioPerl data objects
+  package My::Schema;
+  # load our own classes
+  __PACKAGE__->load_namespaces;
+  __PACKAGE__->load_namespaces(
+      result_namespace    => '+Bio::Chado::Schema::Result',
+      resultset_namespace => '+Bio::Chado::Schema::ResultSet',
+    );
 
 ----
-== Acknowledgments
+= Development Roadmap
 
+* continue to fill in many_to_many rels as needed
+* continue to add more (generic!) convenience methods
+** automate more common querying and loading patterns
+
+----
+= Acknowledgments
+
+* Jonathan Leto (SGN)
 * Aure Bombarely (SGN)
 * Naama Menda (SGN)
 * Siddhartha Basu (dictybase)
 * Lukas Mueller (SGN)
 
 ----
-== That's All
-
-* The END

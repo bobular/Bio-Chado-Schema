@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Organism;
+package Bio::Chado::Schema::Result::Organism;
 
 =head1 NAME
 
-Bio::Chado::Schema::Organism - Species data - does not include phylogeny
+Bio::Chado::Schema::Result::Organism - Species data - does not include phylogeny
 
 =head1 CHADO MODULE
 
@@ -16,11 +16,11 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Organism::Organism>
+L<Bio::Chado::Schema::Result::Organism::Organism>
 
-L<Bio::Chado::Schema::Organism::OrganismDbxref>
+L<Bio::Chado::Schema::Result::Organism::OrganismDbxref>
 
-L<Bio::Chado::Schema::Organism::Organismprop>
+L<Bio::Chado::Schema::Result::Organism::Organismprop>
 
 =cut
 

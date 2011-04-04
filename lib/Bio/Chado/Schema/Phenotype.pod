@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Phenotype;
+package Bio::Chado::Schema::Result::Phenotype;
 
 =head1 NAME
 
-Bio::Chado::Schema::Phenotype - Entity-attribute-value phenotypic character descriptions
+Bio::Chado::Schema::Result::Phenotype - Entity-attribute-value phenotypic character descriptions
 
 =head1 CHADO MODULE
 
@@ -16,11 +16,11 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Phenotype::FeaturePhenotype>
+L<Bio::Chado::Schema::Result::Phenotype::FeaturePhenotype>
 
-L<Bio::Chado::Schema::Phenotype::Phenotype>
+L<Bio::Chado::Schema::Result::Phenotype::Phenotype>
 
-L<Bio::Chado::Schema::Phenotype::PhenotypeCvterm>
+L<Bio::Chado::Schema::Result::Phenotype::PhenotypeCvterm>
 
 =cut
 

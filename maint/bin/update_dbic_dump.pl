@@ -369,13 +369,13 @@ sub _generate_chado_submodule_podfile {
     my $file = dir( $dump_dir )
       ->subdir('Bio')
       ->subdir('Chado')
-        ->subdir('Schema')
-        ->file( "$info->{module}.pod" );
+      ->subdir('Schema')
+      ->file( "$info->{module}.pod" );
 
     @{ $info->{tables} } or die "no tables in module $info->{module}??";
 
     my $table_pod = join "\n\n", map {
-      "L<Bio::Chado::Schema::".$_.">"
+      "L<Bio::Chado::Schema::Result::".$_.">"
     } @{ $info->{tables} };
 
     $info->{module_comment} &&= "- $info->{module_comment}";
@@ -387,11 +387,11 @@ sub _generate_chado_submodule_podfile {
     # keep the POD below indented by 2 spaces to hide it from the CPAN
     # indexer
     my $pod = <<EOF;
-  package Bio::Chado::Schema::$mod_moniker;
+  package Bio::Chado::Schema::Result::$mod_moniker;
 
   =head1 NAME
 
-  Bio::Chado::Schema::$mod_moniker $info->{module_comment}
+  Bio::Chado::Schema::Result::$mod_moniker $info->{module_comment}
 
   =head1 CHADO MODULE
 

@@ -5,9 +5,9 @@ use warnings;
 use FindBin;
 use lib "$FindBin::RealBin/../lib";
 
-use Test::More tests => 29;
+use Test::More tests => 30;
 use Test::Exception;
-use Bio::Chado::Schema;
+use Bio::Chado::Schema::Test;
 
 my $schema = Bio::Chado::Schema::Test->init_schema();
 
@@ -145,8 +145,8 @@ $schema->txn_do(sub{
 
     my (@children_rels) = $parent->child_relationships;
     my (@parents_rels)  = $parent->parent_relationships;
-    isa_ok($children_rels[0], 'Bio::Chado::Schema::Sequence::FeatureRelationship');
-    isa_ok($parents_rels[0],  'Bio::Chado::Schema::Sequence::FeatureRelationship');
+    isa_ok($children_rels[0], 'Bio::Chado::Schema::Result::Sequence::FeatureRelationship');
+    isa_ok($parents_rels[0],  'Bio::Chado::Schema::Result::Sequence::FeatureRelationship');
 
     isnt($parent->feature_id, $child->feature_id, 'child and parent are different');
     my (@children) = $parent->child_features;
@@ -160,8 +160,8 @@ $schema->txn_do(sub{
     is(scalar @grandparents, 1, "the parent feature has one parent feature");
     is(scalar @grandkids, 0, "the child feature has no child feature");
 
-    isa_ok($children[0], 'Bio::Chado::Schema::Sequence::Feature');
-    isa_ok($parents[0], 'Bio::Chado::Schema::Sequence::Feature');
+    isa_ok($children[0], 'Bio::Chado::Schema::Result::Sequence::Feature');
+    isa_ok($parents[0], 'Bio::Chado::Schema::Result::Sequence::Feature');
 
     is_deeply( [ map { $_->name } @children ], [ 'BCS_stepchild', 'BCS_stuff_child' ], 'child feature_id is correct' );
     is_deeply( [ map { $_->name } @parents ], [ 'BCS_stuff_parent' ], 'parent feature_id is correct' );
@@ -175,6 +175,10 @@ $schema->txn_do(sub{
                       strand     => 1,
                   });
     is( $featureloc->length, 8, 'got right featureloc length' );
+
+    # test the synonyms many-to-many
+
+    is( scalar( $feature->synonyms ), 0, 'synonyms mm rel works' );
 
     $schema->txn_rollback;
 });

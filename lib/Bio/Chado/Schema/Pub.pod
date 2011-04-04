@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Pub;
+package Bio::Chado::Schema::Result::Pub;
 
 =head1 NAME
 
-Bio::Chado::Schema::Pub - Bibliographic data on publications
+Bio::Chado::Schema::Result::Pub - Bibliographic data on publications
 
 =head1 CHADO MODULE
 
@@ -16,15 +16,15 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Pub::Pub>
+L<Bio::Chado::Schema::Result::Pub::Pub>
 
-L<Bio::Chado::Schema::Pub::PubDbxref>
+L<Bio::Chado::Schema::Result::Pub::PubDbxref>
 
-L<Bio::Chado::Schema::Pub::PubRelationship>
+L<Bio::Chado::Schema::Result::Pub::PubRelationship>
 
-L<Bio::Chado::Schema::Pub::Pubauthor>
+L<Bio::Chado::Schema::Result::Pub::Pubauthor>
 
-L<Bio::Chado::Schema::Pub::Pubprop>
+L<Bio::Chado::Schema::Result::Pub::Pubprop>
 
 =cut
 

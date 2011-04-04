@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::General;
+package Bio::Chado::Schema::Result::General;
 
 =head1 NAME
 
-Bio::Chado::Schema::General - General purpose tables, including dbxrefs
+Bio::Chado::Schema::Result::General - General purpose tables, including dbxrefs
 
 =head1 CHADO MODULE
 
@@ -16,13 +16,13 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::General::Db>
+L<Bio::Chado::Schema::Result::General::Db>
 
-L<Bio::Chado::Schema::General::DbDbxrefCount>
+L<Bio::Chado::Schema::Result::General::DbDbxrefCount>
 
-L<Bio::Chado::Schema::General::Dbxref>
+L<Bio::Chado::Schema::Result::General::Dbxref>
 
-L<Bio::Chado::Schema::General::Tableinfo>
+L<Bio::Chado::Schema::Result::General::Tableinfo>
 
 =cut
 

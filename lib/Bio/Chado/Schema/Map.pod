@@ -1,8 +1,8 @@
-package Bio::Chado::Schema::Map;
+package Bio::Chado::Schema::Result::Map;
 
 =head1 NAME
 
-Bio::Chado::Schema::Map - Non-sequence maps: genetic, radiation hybrid, cytogenetic, etc
+Bio::Chado::Schema::Result::Map - Non-sequence maps: genetic, radiation hybrid, cytogenetic, etc
 
 =head1 CHADO MODULE
 
@@ -16,13 +16,13 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
-L<Bio::Chado::Schema::Map::Featuremap>
+L<Bio::Chado::Schema::Result::Map::Featuremap>
 
-L<Bio::Chado::Schema::Map::FeaturemapPub>
+L<Bio::Chado::Schema::Result::Map::FeaturemapPub>
 
-L<Bio::Chado::Schema::Map::Featurepos>
+L<Bio::Chado::Schema::Result::Map::Featurepos>
 
-L<Bio::Chado::Schema::Map::Featurerange>
+L<Bio::Chado::Schema::Result::Map::Featurerange>
 
 =cut
 
