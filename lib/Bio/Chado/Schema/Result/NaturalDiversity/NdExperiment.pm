@@ -310,6 +310,24 @@ __PACKAGE__->many_to_many
     );
 
 
+=head2 projects
+
+Type: many_to_many
+
+Returns a list of projects
+
+Related object: Bio::Chado::Schema::Project::Project
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'projects',
+     'nd_experiment_projects' => 'project',
+    );
+
+
+
 =head1 CONVENIENCE METHODS
 
 =head2 stocks_by_nd_experiment_stock_type
