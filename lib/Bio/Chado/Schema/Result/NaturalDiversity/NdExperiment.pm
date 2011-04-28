@@ -316,7 +316,7 @@ Type: many_to_many
 
 Returns a list of projects
 
-Related object: Bio::Chado::Schema::Project::Project
+Related object: Bio::Chado::Schema::Result::Project::Project
 
 =cut
 
@@ -324,6 +324,22 @@ __PACKAGE__->many_to_many
     (
      'projects',
      'nd_experiment_projects' => 'project',
+    );
+
+=head2 nd_protocols
+
+Type: many_to_many
+
+Returns a list of nd_protocols
+
+Related object: Bio::Chado::Schema::Result::NaturalDiversity::NdProtocol
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'nd_protocols',
+     'nd_experiment_protocols' => 'nd_protocol',
     );
 
 

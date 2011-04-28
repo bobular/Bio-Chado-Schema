@@ -105,6 +105,26 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:59
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ma5vVl2nxxjNVOoGOfygow
 
+=head1 MANY-TO-MANY RELATIONSHIPS
+
+=head2 nd_experiments
+
+Type: many_to_many
+
+Returns a list of nd_experiments
+
+Related object: Bio::Chado::Schema::Result::NaturalDiversity::NdExperiment
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'nd_experiments',
+     'nd_experiment_protocols' => 'nd_experiment',
+    );
+
+
+=head1 CONVENIENCE METHODS
 
 =head2 create_nd_protocolprops
 
