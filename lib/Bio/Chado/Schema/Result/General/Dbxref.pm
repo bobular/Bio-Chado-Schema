@@ -456,7 +456,7 @@ __PACKAGE__->has_many(
 =head2 biomaterials_mm
 
 Relation to L<Bio::Chado::Schema::Result::Mage::Biomaterial> (i.e. C<biomaterial> table)
-via the C<organism_dbxrefs> table.
+via the C<biomaterial_dbxrefs> table.
 
 =cut
 
@@ -516,6 +516,19 @@ __PACKAGE__->many_to_many
     (
      'libraries_mm',
      'library_dbxrefs' => 'library',
+    );
+
+=head2 nd_experiment_stocks_mm
+
+Relation to L<Bio::Chado::Schema::Result::NaturalDiversity::NdExperimentStock> (i.e. C<nd_experiment_stock> table)
+via the C<nd_experiment_stock_dbxref> table.
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'nd_experiment_stocks_mm',
+     'nd_experiment_stock_dbxrefs' => 'nd_experiment_stock',
     );
 
 =head2 organisms_mm

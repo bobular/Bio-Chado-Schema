@@ -323,7 +323,7 @@ Type: many_to_many
 
 Returns a list of experiments
 
-Related object: Bio::Chado::Schema::NaturalDiversity::NdExperiment
+Related object: L<Bio::Chado::Schema::Result::NaturalDiversity::NdExperiment>
 
 =cut
 
@@ -332,6 +332,23 @@ __PACKAGE__->many_to_many
      'nd_experiments',
      'nd_experiment_stocks' => 'nd_experiment',
     );
+
+=head2 dbxrefs
+
+Type: many_to_many
+
+Returns a list of dbxrefs
+
+Related object: L<Bio::Chado::Schema::Result::General::Dbxref>
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'dbxrefs',
+     'stock_dbxrefs' => 'dbxref',
+    );
+
 
 =head1 CONVENIENCE METHODS
 
@@ -387,8 +404,5 @@ sub create_stockprops {
         );
 }
 
-
-
-# You can replace this text with custom content, and it will be preserved on regeneration
 1;
 

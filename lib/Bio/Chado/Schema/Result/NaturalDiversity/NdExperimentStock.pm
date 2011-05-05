@@ -172,6 +172,24 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:59
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:A5rjtFxP/735qGsASzZs6w
 
+=head1 MANY-TO-MANY RELATIONSHIPS
+
+=head2 dbxrefs
+
+Type: many_to_many
+
+Returns a list of dbxrefs
+
+Related object: Bio::Chado::Schema::Result::General::Dbxref
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'dbxrefs',
+     'nd_experiment_stock_dbxrefs' => 'dbxref',
+    );
+
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 1;

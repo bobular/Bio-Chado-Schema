@@ -239,58 +239,6 @@ __PACKAGE__->has_many(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rdopd+NuS4NVDr0dVrREnQ
 
 
-=head2 create_nd_experimentprops
-
-  Usage: $set->create_nd_experimentprops({ baz => 2, foo => 'bar' });
-  Desc : convenience method to create experiment properties using cvterms
-          from the ontology with the given name
-  Args : hashref of { propname => value, ...},
-         options hashref as:
-          {
-            autocreate => 0,
-               (optional) boolean, if passed, automatically create cv,
-               cvterm, and dbxref rows if one cannot be found for the
-               given experimentprop name.  Default false.
-
-            cv_name => cv.name to use for the given experimentprops.
-                       Defaults to 'nd_experiment_property',
-
-            db_name => db.name to use for autocreated dbxrefs,
-                       default 'null',
-
-            dbxref_accession_prefix => optional, default
-                                       'autocreated:',
-            definitions => optional hashref of:
-                { cvterm_name => definition,
-                }
-             to load into the cvterm table when autocreating cvterms
-
-             rank => force numeric rank. Be careful not to pass ranks that already exist
-                     for the property type. The function will die in such case.
-
-             allow_duplicate_values => default false.
-                If true, allow duplicate instances of the same experiment
-                and types in the properties of the experiment.  Duplicate
-                types will have different ranks.
-          }
-  Ret  : hashref of { propname => new experimentprop object }
-
-=cut
-
-sub create_nd_experimentprops {
-    my ($self, $props, $opts) = @_;
-
-    # process opts
-    $opts->{cv_name} = 'nd_experiment_property'
-        unless defined $opts->{cv_name};
-    return Bio::Chado::Schema::Util->create_properties
-        ( properties => $props,
-          options    => $opts,
-          row        => $self,
-          prop_relation_name => 'nd_experimentprops',
-        );
-}
-
 =head1 MANY-TO-MANY RELATIONSHIPS
 
 =head2 stocks
@@ -342,9 +290,140 @@ __PACKAGE__->many_to_many
      'nd_experiment_protocols' => 'nd_protocol',
     );
 
+=head2 genotypes
+
+Type: many_to_many
+
+Returns a list of genotypes
+
+Related object: Bio::Chado::Schema::Result::Genetic::Genotype
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'genotypes',
+     'nd_experiment_genotypes' => 'genotype',
+    );
+
+=head2 phenotypes
+
+Type: many_to_many
+
+Returns a list of phenotypes
+
+Related object: Bio::Chado::Schema::Result::Phenotype::Phenotype
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'phenotypes',
+     'nd_experiment_phenotypes' => 'phenotype',
+    );
+
+=head2 contacts
+
+Type: many_to_many
+
+Returns a list of contacts
+
+Related object: Bio::Chado::Schema::Result::Contact::Contact
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'contacts',
+     'nd_experiment_contacts' => 'contact',
+    );
+
+=head2 dbxrefs
+
+Type: many_to_many
+
+Returns a list of dbxrefs
+
+Related object: Bio::Chado::Schema::Result::General::Dbxref
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'dbxrefs',
+     'nd_experiment_dbxrefs' => 'dbxref',
+    );
+
+=head2 pubs
+
+Type: many_to_many
+
+Returns a list of pubs (publications)
+
+Related object: Bio::Chado::Schema::Result::Pub::Pub
+
+=cut
+
+__PACKAGE__->many_to_many
+    (
+     'pubs',
+     'nd_experiment_pubs' => 'pub',
+    );
 
 
 =head1 CONVENIENCE METHODS
+
+=head2 create_nd_experimentprops
+
+  Usage: $set->create_nd_experimentprops({ baz => 2, foo => 'bar' });
+  Desc : convenience method to create experiment properties using cvterms
+          from the ontology with the given name
+  Args : hashref of { propname => value, ...},
+         options hashref as:
+          {
+            autocreate => 0,
+               (optional) boolean, if passed, automatically create cv,
+               cvterm, and dbxref rows if one cannot be found for the
+               given experimentprop name.  Default false.
+
+            cv_name => cv.name to use for the given experimentprops.
+                       Defaults to 'nd_experiment_property',
+
+            db_name => db.name to use for autocreated dbxrefs,
+                       default 'null',
+
+            dbxref_accession_prefix => optional, default
+                                       'autocreated:',
+            definitions => optional hashref of:
+                { cvterm_name => definition,
+                }
+             to load into the cvterm table when autocreating cvterms
+
+             rank => force numeric rank. Be careful not to pass ranks that already exist
+                     for the property type. The function will die in such case.
+
+             allow_duplicate_values => default false.
+                If true, allow duplicate instances of the same experiment
+                and types in the properties of the experiment.  Duplicate
+                types will have different ranks.
+          }
+  Ret  : hashref of { propname => new experimentprop object }
+
+=cut
+
+sub create_nd_experimentprops {
+    my ($self, $props, $opts) = @_;
+
+    # process opts
+    $opts->{cv_name} = 'nd_experiment_property'
+        unless defined $opts->{cv_name};
+    return Bio::Chado::Schema::Util->create_properties
+        ( properties => $props,
+          options    => $opts,
+          row        => $self,
+          prop_relation_name => 'nd_experimentprops',
+        );
+}
 
 =head2 stocks_by_nd_experiment_stock_type
 
