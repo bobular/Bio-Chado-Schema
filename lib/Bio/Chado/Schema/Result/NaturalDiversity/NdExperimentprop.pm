@@ -40,9 +40,8 @@ __PACKAGE__->table("nd_experimentprop");
 
 =head2 value
 
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 255
+  data_type: 'text'
+  is_nullable: 1
 
 =head2 rank
 
@@ -65,7 +64,7 @@ __PACKAGE__->add_columns(
   "type_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "value",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
+  { data_type => "text", is_nullable => 1 },
   "rank",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
 );
@@ -120,8 +119,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:lkgorHFNj+IhtaN+wEKqCA
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-22 08:45:24
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Ag74g+VBM1WmF6TcBNsRBA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

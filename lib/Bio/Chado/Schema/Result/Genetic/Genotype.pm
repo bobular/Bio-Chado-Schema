@@ -52,6 +52,12 @@ typically derived from the features making up the genotype.
   is_nullable: 1
   size: 255
 
+=head2 type_id
+
+  data_type: 'integer'
+  is_foreign_key: 1
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -68,6 +74,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 0 },
   "description",
   { data_type => "varchar", is_nullable => 1, size => 255 },
+  "type_id",
+  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key("genotype_id");
 __PACKAGE__->add_unique_constraint("genotype_c1", ["uniquename"]);
@@ -85,6 +93,42 @@ Related object: L<Bio::Chado::Schema::Result::Genetic::FeatureGenotype>
 __PACKAGE__->has_many(
   "feature_genotypes",
   "Bio::Chado::Schema::Result::Genetic::FeatureGenotype",
+  { "foreign.genotype_id" => "self.genotype_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 type
+
+Type: belongs_to
+
+Related object: L<Bio::Chado::Schema::Result::Cv::Cvterm>
+
+=cut
+
+__PACKAGE__->belongs_to(
+  "type",
+  "Bio::Chado::Schema::Result::Cv::Cvterm",
+  { cvterm_id => "type_id" },
+  {
+    cascade_copy   => 0,
+    cascade_delete => 0,
+    is_deferrable  => 1,
+    on_delete      => "CASCADE",
+    on_update      => "CASCADE",
+  },
+);
+
+=head2 genotypeprops
+
+Type: has_many
+
+Related object: L<Bio::Chado::Schema::Result::Genetic::Genotypeprop>
+
+=cut
+
+__PACKAGE__->has_many(
+  "genotypeprops",
+  "Bio::Chado::Schema::Result::Genetic::Genotypeprop",
   { "foreign.genotype_id" => "self.genotype_id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -180,9 +224,61 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/wNzdpdru6dAlQZA59Jrhw
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-22 08:45:24
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pl/UQ6kAn7WVHaoTZUrPWg
 
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+=head2 create_genotypeprops
+
+  Usage: $set->create_genotypeprops({ baz => 2, foo => 'bar' });
+  Desc : convenience method to create genotype properties using cvterms
+          from the ontology with the given name
+  Args : hashref of { propname => value, ...},
+         options hashref as:
+          {
+            autocreate => 0,
+               (optional) boolean, if passed, automatically create cv,
+               cvterm, and dbxref rows if one cannot be found for the
+               given genotypeprop name.  Default false.
+
+            cv_name => cv.name to use for the given genotypeprops.
+                       Defaults to 'genotype_property',
+
+            db_name => db.name to use for autocreated dbxrefs,
+                       default 'null',
+
+            dbxref_accession_prefix => optional, default
+                                       'autocreated:',
+            definitions => optional hashref of:
+                { cvterm_name => definition,
+                }
+             to load into the cvterm table when autocreating cvterms
+
+             rank => force numeric rank. Be careful not to pass ranks that already exist
+                     for the property type. The function will die in such case.
+
+             allow_duplicate_values => default false.
+                If true, allow duplicate instances of the same genotype
+                and value in the properties of the genotype.  Duplicate
+                values will have different ranks.
+          }
+  Ret  : hashref of { propname => new genotypeprop object }
+
+=cut
+
+sub create_genotypeprops {
+    my ($self, $props, $opts) = @_;
+
+    # process opts
+    $opts->{cv_name} = 'genotype_property'
+        unless defined $opts->{cv_name};
+    return Bio::Chado::Schema::Util->create_properties
+        ( properties => $props,
+          options    => $opts,
+          row        => $self,
+          prop_relation_name => 'genotypeprops',
+        );
+}
+
+
 1;

@@ -157,6 +157,21 @@ __PACKAGE__->belongs_to(
   },
 );
 
+=head2 stock_relationship_cvterms
+
+Type: has_many
+
+Related object: L<Bio::Chado::Schema::Result::Stock::StockRelationshipCvterm>
+
+=cut
+
+__PACKAGE__->has_many(
+  "stock_relationship_cvterms",
+  "Bio::Chado::Schema::Result::Stock::StockRelationshipCvterm",
+  { "foreign.stock_relationship_id" => "self.stock_relationship_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 stock_relationship_pubs
 
 Type: has_many
@@ -173,8 +188,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:fZwEQoTgJFvhs6ArqpS/iw
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-22 08:45:24
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ClokyNSMEKjwcU78vbfKPg
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

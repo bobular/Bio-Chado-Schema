@@ -274,7 +274,6 @@ __PACKAGE__->has_many(
 # Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:58
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:XvZlFe2W64Rj4c6rbmCM0Q
 
-
 =head2 length
 
 Read-only.  Number of bases spanned by this featureloc.
@@ -290,6 +289,27 @@ sub length {
     return $self->fmax - $self->fmin;
 }
 
+=head1 ADDITIONAL METHODS
+
+=head2 to_range
+
+Make a L<Bio::Range> object containing the information in this
+featureloc.  Note that this converts to BioPerl-style one-based
+coordinates.
+
+=cut
+
+sub to_range {
+    my ( $self ) = @_;
+
+    require Bio::Range;
+
+    return Bio::Range->new(
+        -start  => $self->fmin + 1,
+        -end    => $self->fmax,
+        -strand => $self->strand,
+      );
+}
 
 # You can replace this text with custom content, and it will be preserved on regeneration
 1;

@@ -370,6 +370,7 @@ sub _generate_chado_submodule_podfile {
       ->subdir('Bio')
       ->subdir('Chado')
       ->subdir('Schema')
+      ->subdir('Result')
       ->file( "$info->{module}.pod" );
 
     @{ $info->{tables} } or die "no tables in module $info->{module}??";

@@ -1,4 +1,4 @@
-package Bio::Chado::Schema::Result::NaturalDiversity::NdGeolocationprop;
+package Bio::Chado::Schema::Result::Phenotype::Phenotypeprop;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -11,26 +11,30 @@ use base 'DBIx::Class::Core';
 
 =head1 NAME
 
-Bio::Chado::Schema::Result::NaturalDiversity::NdGeolocationprop
+Bio::Chado::Schema::Result::Phenotype::Phenotypeprop
 
 =head1 DESCRIPTION
 
-Property/value associations for geolocations. This table can store the properties such as location and environment
+A phenotype can have any number of
+slot-value property tags attached to it. This is an alternative to
+hardcoding a list of columns in the relational schema, and is
+completely extensible. There is a unique constraint, phenotypeprop_c1, for
+the combination of phenotype_id, rank, and type_id. Multivalued property-value pairs must be differentiated by rank.
 
 =cut
 
-__PACKAGE__->table("nd_geolocationprop");
+__PACKAGE__->table("phenotypeprop");
 
 =head1 ACCESSORS
 
-=head2 nd_geolocationprop_id
+=head2 phenotypeprop_id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'nd_geolocationprop_nd_geolocationprop_id_seq'
+  sequence: 'phenotypeprop_phenotypeprop_id_seq'
 
-=head2 nd_geolocation_id
+=head2 phenotype_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -42,14 +46,10 @@ __PACKAGE__->table("nd_geolocationprop");
   is_foreign_key: 1
   is_nullable: 0
 
-The name of the property as a reference to a controlled vocabulary term.
-
 =head2 value
 
   data_type: 'text'
   is_nullable: 1
-
-The value of the property.
 
 =head2 rank
 
@@ -57,19 +57,17 @@ The value of the property.
   default_value: 0
   is_nullable: 0
 
-The rank of the property value, if the property has an array of values.
-
 =cut
 
 __PACKAGE__->add_columns(
-  "nd_geolocationprop_id",
+  "phenotypeprop_id",
   {
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "nd_geolocationprop_nd_geolocationprop_id_seq",
+    sequence          => "phenotypeprop_phenotypeprop_id_seq",
   },
-  "nd_geolocation_id",
+  "phenotype_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
   "type_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -78,11 +76,8 @@ __PACKAGE__->add_columns(
   "rank",
   { data_type => "integer", default_value => 0, is_nullable => 0 },
 );
-__PACKAGE__->set_primary_key("nd_geolocationprop_id");
-__PACKAGE__->add_unique_constraint(
-  "nd_geolocationprop_c1",
-  ["nd_geolocation_id", "type_id", "rank"],
-);
+__PACKAGE__->set_primary_key("phenotypeprop_id");
+__PACKAGE__->add_unique_constraint("phenotypeprop_c1", ["phenotype_id", "type_id", "rank"]);
 
 =head1 RELATIONS
 
@@ -107,18 +102,18 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 nd_geolocation
+=head2 phenotype
 
 Type: belongs_to
 
-Related object: L<Bio::Chado::Schema::Result::NaturalDiversity::NdGeolocation>
+Related object: L<Bio::Chado::Schema::Result::Phenotype::Phenotype>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "nd_geolocation",
-  "Bio::Chado::Schema::Result::NaturalDiversity::NdGeolocation",
-  { nd_geolocation_id => "nd_geolocation_id" },
+  "phenotype",
+  "Bio::Chado::Schema::Result::Phenotype::Phenotype",
+  { phenotype_id => "phenotype_id" },
   {
     cascade_copy   => 0,
     cascade_delete => 0,
@@ -129,9 +124,9 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-22 08:45:24
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:lkWxiu/JpcQtkdEj/OVkhQ
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-11-07 13:19:16
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:NDHb+iWsyTXU8gPq4qaqLw
 
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

@@ -37,6 +37,11 @@ __PACKAGE__->table("phenotype");
   data_type: 'text'
   is_nullable: 0
 
+=head2 name
+
+  data_type: 'text'
+  is_nullable: 1
+
 =head2 observable_id
 
   data_type: 'integer'
@@ -88,6 +93,8 @@ __PACKAGE__->add_columns(
   },
   "uniquename",
   { data_type => "text", is_nullable => 0 },
+  "name",
+  { data_type => "text", is_nullable => 1 },
   "observable_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
   "attr_id",
@@ -267,6 +274,21 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 phenotypeprops
+
+Type: has_many
+
+Related object: L<Bio::Chado::Schema::Result::Phenotype::Phenotypeprop>
+
+=cut
+
+__PACKAGE__->has_many(
+  "phenotypeprops",
+  "Bio::Chado::Schema::Result::Phenotype::Phenotypeprop",
+  { "foreign.phenotype_id" => "self.phenotype_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 phenstatements
 
 Type: has_many
@@ -283,9 +305,60 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-03-16 23:09:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BQ6KZODWf4Lkio/RVuwL0Q
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-11-07 13:19:16
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Doe95PQkanrP5pONEXNZ0w
 
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+=head2 create_phenotypeprops
+
+  Usage: $set->create_phenotypeprops({ baz => 2, foo => 'bar' });
+  Desc : convenience method to create phenotype properties using cvterms
+          from the ontology with the given name
+  Args : hashref of { propname => value, ...},
+         options hashref as:
+          {
+            autocreate => 0,
+               (optional) boolean, if passed, automatically create cv,
+               cvterm, and dbxref rows if one cannot be found for the
+               given phenotypeprop name.  Default false.
+
+            cv_name => cv.name to use for the given phenotypeprops.
+                       Defaults to 'phenotype_property',
+
+            db_name => db.name to use for autocreated dbxrefs,
+                       default 'null',
+
+            dbxref_accession_prefix => optional, default
+                                       'autocreated:',
+            definitions => optional hashref of:
+                { cvterm_name => definition,
+                }
+             to load into the cvterm table when autocreating cvterms
+
+             rank => force numeric rank. Be careful not to pass ranks that already exist
+                     for the property type. The function will die in such case.
+
+             allow_duplicate_values => default false.
+                If true, allow duplicate instances of the same phenotype
+                and value in the properties of the phenotype.  Duplicate
+                values will have different ranks.
+          }
+  Ret  : hashref of { propname => new phenotypeprop object }
+
+=cut
+
+sub create_phenotypeprops {
+    my ($self, $props, $opts) = @_;
+
+    # process opts
+    $opts->{cv_name} = 'phenotype_property'
+        unless defined $opts->{cv_name};
+    return Bio::Chado::Schema::Util->create_properties
+        ( properties => $props,
+          options    => $opts,
+          row        => $self,
+          prop_relation_name => 'phenotypeprops',
+        );
+}
+
 1;

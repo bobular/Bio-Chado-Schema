@@ -24,6 +24,8 @@ L<Bio::Chado::Schema::Result::Genetic::FeatureGenotype>
 
 L<Bio::Chado::Schema::Result::Genetic::Genotype>
 
+L<Bio::Chado::Schema::Result::Genetic::Genotypeprop>
+
 L<Bio::Chado::Schema::Result::Genetic::Phendesc>
 
 L<Bio::Chado::Schema::Result::Genetic::PhenotypeComparison>

@@ -5,8 +5,9 @@ use warnings;
 use FindBin;
 use lib "$FindBin::RealBin/../lib";
 
-use Test::More tests => 30;
+use Test::More tests => 37;
 use Test::Exception;
+use Test::Warn;
 use Bio::Chado::Schema::Test;
 
 my $schema = Bio::Chado::Schema::Test->init_schema();
@@ -70,6 +71,7 @@ $schema->txn_do(sub{
         },
        );
 
+    is( $parent->alphabet, 'dna', 'got right alphabet' );
     is( $parent->subseq( 3, 5 ), 'TAG', 'subseq on large_residues prop works' );
     is( $parent->trunc( 3, 5 )->seq, 'TAG', 'subseq on large_residues prop works' );
     is( $parent->trunc( 3, 5 )->id, $parent->name, 'subseq on large_residues has proper name' );
@@ -176,9 +178,27 @@ $schema->txn_do(sub{
                   });
     is( $featureloc->length, 8, 'got right featureloc length' );
 
+    is( $featureloc->to_range->start,  21, 'featureloc to_range start' );
+    is( $featureloc->to_range->end,    28, 'featureloc to_range end' );
+    is( $featureloc->to_range->strand,  1, 'featureloc to_range strand' );
+
     # test the synonyms many-to-many
 
     is( scalar( $feature->synonyms ), 0, 'synonyms mm rel works' );
+
+
+    # insert a feature with no seqlen or residues
+    { my $no_seq = $schema->resultset('Sequence::Feature')
+            ->create({ name => 'mostly_blank',
+                       uniquename => 'mostly_blank',
+                       organism_id => 4,
+                       type => $cvterm,
+                     });
+
+      is( $no_seq->subseq(1,0), undef, 'undef for strange subseq on a feature with no residues' );
+      is( $no_seq->subseq(1,1), undef, 'slightly different subseq args' );
+      is( $no_seq->seqlen, undef, 'undef on seqlen for this also' );
+    }
 
     $schema->txn_rollback;
 });

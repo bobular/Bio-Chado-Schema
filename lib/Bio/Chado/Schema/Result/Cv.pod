@@ -16,6 +16,8 @@ These classes are part of the L<Bio::Chado::Schema> distribution.
 Below is a list of classes in this module of Chado.  Each of the
 classes below corresponds to a single Chado table or view.
 
+L<Bio::Chado::Schema::Result::Cv::Chadoprop>
+
 L<Bio::Chado::Schema::Result::Cv::CommonAncestorCvterm>
 
 L<Bio::Chado::Schema::Result::Cv::CommonDescendantCvterm>

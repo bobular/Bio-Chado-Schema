@@ -22,6 +22,8 @@ L<Bio::Chado::Schema::Result::Phenotype::Phenotype>
 
 L<Bio::Chado::Schema::Result::Phenotype::PhenotypeCvterm>
 
+L<Bio::Chado::Schema::Result::Phenotype::Phenotypeprop>
+
 =cut
 
 1;

@@ -961,11 +961,11 @@ sub subseq {
 
     my ( $start, $end ) = @_;
     croak "must provide start, end to subseq" unless $start;
-    croak "subseq() on large_residues only supports ( $start, $end ) calling style"
-        if ref $start || !$end;
+    croak "subseq() on large_residues only supports ( start, end ) calling style"
+        if ref $start || ! defined $end;
 
     my $length = $end - $start + 1;
-    return '' unless $length > 0;
+    return unless $length > 0;
 
     return
         $self->result_source
@@ -1043,6 +1043,7 @@ sub length {
     my $self = shift;
     my $l = $self->seqlen;
     return $l if defined $l;
+    no warnings 'uninitialized';
     return CORE::length( $self->residues );
 }
 
@@ -1059,7 +1060,7 @@ found for this feature.
 sub desc {
     my $self = shift;
     my $desc_fp =
-        $self->search_featureprops({ name => ['description','Note','note'] })
+        $self->search_featureprops({ name => ['description','Note','note','Description'] })
              ->first;
     return unless $desc_fp;
     return $desc_fp->value;
@@ -1067,12 +1068,17 @@ sub desc {
 
 =head2 alphabet
 
-Not implemented. Throws an error if used.
+Returns "protein" if the feature's type name is "polypeptide".
+Otherwise, returns "dna".  This is not very correct, but works in most
+of the use cases we've seen so far.
 
 =cut
 
 sub alphabet {
-    shift()->throw_not_implemented()
+    # yes, this is pretty lame. should traverse up the relationships
+    # using cvtermpath or cvterm_relationship.  patches welcome.
+    my $type_name = shift->type->name;
+    return $type_name eq 'polypeptide' ? 'protein' : 'dna';
 }
 
 # signal to BioPerl that this sequence can't be cloned
